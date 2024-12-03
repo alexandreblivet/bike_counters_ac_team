@@ -82,36 +82,11 @@ def prepare_data(df, is_train=None):
     else:
         return transformed_df, num_feat, bin_feat, cat_feat
 
-def create_pipeline(self):
-        # Add polynomial features for numeric variables
-        numeric_transformer = Pipeline(steps=[
-            ('scaler', StandardScaler()),
-            ('poly', PolynomialFeatures(degree=2, include_bias=False)),
-        ])
-
-        categorical_transformer = Pipeline(steps=[
-            ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
-        ])
-
-        preprocessor = ColumnTransformer(transformers=[
-            ('num', numeric_transformer, self.numeric_features),
-            ('cat', categorical_transformer, self.categorical_features),
-            ('bin', 'passthrough', self.binary_features)
-        ])
-
-        return Pipeline([
-            ('preprocessor', preprocessor),
-            ('regressor', Ridge())
-        ])
-
 if __name__ == "__main__":
     train_df = pd.read_parquet(Path("data/train.parquet"))
     test_df = pd.read_parquet(Path("data/final_test.parquet"))
 
-    # Training data
     X_train, y_train, num_feat, bin_feat, cat_feat = prepare_data(train_df, is_train=True)
-
-    # Test data - only unpack what's returned
     X_test = prepare_data(test_df, is_train=False)[0]
 
     pipeline = Pipeline([
@@ -132,4 +107,4 @@ if __name__ == "__main__":
     pd.DataFrame({
         'Id': range(len(predictions)),
         'log_bike_count': predictions
-    }).to_csv('submission.csv', index=False)
+    }).to_csv('submission_elasticnet.csv', index=False)
