@@ -56,7 +56,7 @@ if __name__ == "__main__":
     X_train, y_train = prepare_data(train_df, weather_df, is_train=True)
     X_test = prepare_data(test_df, weather_df, is_train=False)
 
-    # Best parameters from optuna
+    # Best parameters from optuna to keep them
     params = {
         'iterations': 600,
         'learning_rate': 0.228,
