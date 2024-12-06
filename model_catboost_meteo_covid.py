@@ -3,11 +3,12 @@ import numpy as np
 import pandas as pd
 from catboost import CatBoostRegressor
 
-def prepare_data(df, weather_df, is_train=None):
+def prepare_data(df, weather_df, covid_df, is_train=None):
     df = df.copy()
 
     df['date'] = pd.to_datetime(df['date']).dt.floor('h')
     weather_df['date'] = pd.to_datetime(weather_df['date']).dt.floor('h')
+    covid_df['date'] = pd.to_datetime(covid_df['date']).dt.floor('h')
     df = pd.merge(df, weather_df, on='date', how='left')
     df = pd.merge(df, covid_df, on='date', how='left')
 
@@ -55,8 +56,8 @@ if __name__ == "__main__":
     covid_df = pd.read_csv('external_data/Covid/Propre_nbr_Covid.csv')
 
     # Prepare features
-    X_train, y_train = prepare_data(train_df, weather_df, is_train=True)
-    X_test = prepare_data(test_df, weather_df, is_train=False)
+    X_train, y_train = prepare_data(train_df, weather_df, covid_df, is_train=True)
+    X_test = prepare_data(test_df, weather_df, covid_df, is_train=False)
 
     # Best parameters from optuna to keep them
     params = {
