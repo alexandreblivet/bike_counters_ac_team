@@ -61,12 +61,12 @@ if __name__ == "__main__":
 
     # Best parameters from optuna to keep them
     params = {
-        'iterations': 600,
-        'learning_rate': 0.228,
-        'depth': 7,
-        'bagging_temperature': 0.549,
-        'l2_leaf_reg': 0.055,
-        'border_count': 115,
+        'iterations': 500,
+        'learning_rate': 0.12,
+        'depth': 12,
+        'bagging_temperature': 2e-8,
+        'l2_leaf_reg': 2e-3,
+        'border_count': 84,
         'od_type': 'IncToDec',
         'od_wait': 24
     }
