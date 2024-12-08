@@ -31,8 +31,8 @@ def prepare_data(df, weather_df, covid_df, is_train=None):
     df['month_cos'] = np.cos(2 * np.pi * df['month']/12)
 
     df['is_working_day'] = (~df['is_weekend']) & (~df['is_holiday'])
-    morning_rush = (df['hour'].between(7,9)) & df['is_working_day']
-    evening_rush = (df['hour'].between(16,18)) & df['is_working_day']
+    morning_rush = (df['hour'].between(6,8)) & df['is_working_day']
+    evening_rush = (df['hour'].between(15,17)) & df['is_working_day']
     df['is_rush_hour'] = (morning_rush | evening_rush)
 
     cols_to_drop = ['counter_id', 'site_id', 'site_name', 'counter_installation_date',
