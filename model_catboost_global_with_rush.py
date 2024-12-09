@@ -61,15 +61,15 @@ if __name__ == "__main__":
 
     # Best parameters from optuna to keep them
     params = {
-        'iterations': 520,
-        'learning_rate': 0.15,
-        'depth': 10,
-        'bagging_temperature': 2.45e-12,
-        'l2_leaf_reg': 5e-5,
-        'border_count': 130,
+        'iterations': 600,
+        'learning_rate': 0.097,
+        'depth': 12,
+        'bagging_temperature': 9.97e-12,
+        'l2_leaf_reg': 0.000016,
+        'border_count': 110,
         'od_type': 'IncToDec',
         'od_wait': 22,
-        'random_strength': 4e-17
+        'random_strength': 1e-20
     }
 
     # Train ensemble
