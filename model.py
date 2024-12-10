@@ -46,8 +46,8 @@ def create_engineered_features(df):
 
     # Create working day feature
     df['is_working_day'] = (~df['is_weekend']) & (~df['is_holiday'])
-    morning_rush = (df['hour'].between(6, 9)) & df['is_working_day']
-    evening_rush = (df['hour'].between(16, 18)) & df['is_working_day']
+    morning_rush = (df['hour'].between(6, 8)) & df['is_working_day']
+    evening_rush = (df['hour'].between(15, 17)) & df['is_working_day']
     df['is_rush_hour'] = (morning_rush | evening_rush).astype(bool)
 
     # Drop columns
