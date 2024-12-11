@@ -107,4 +107,4 @@ if __name__ == "__main__":
     pd.DataFrame({
         'Id': range(len(predictions)),
         'log_bike_count': predictions
-    }).to_csv('submission_elasticnet.csv', index=False)
+    }).to_csv('submission_ridge.csv', index=False)
